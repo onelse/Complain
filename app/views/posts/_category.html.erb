@@ -1,0 +1,10 @@
+<h2>공감</h2>
+<% @posts.each do |post| %>
+  <div class="card">
+    <a href="/posts/<%= post.id %>">
+      <p><%= post.created_at.strftime("%Y년%m월%d일, %H시%M분") %></p>
+      <h3>"<%= post.title %>"</h3>
+      <h4> 공감 <%= post.get_upvotes.size%> | ㅈㄹ <%= post.get_downvotes.size %></h4>
+    </a>
+  </div>
+<% end %>   

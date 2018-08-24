@@ -1,0 +1,38 @@
+<!-- Page Content -->
+<div class="container main">
+      <%= render '/posts/logo' %>
+      <div class="mainmentbox">
+        <div class="mainment" style="writing-mode: tb-rl;">
+          <div class="mainment1">
+            <span class="ment">불</span><span>만</span></br>
+          </div>
+          <div class="mainment2">
+            <span class="ment">모</span><span>든</span></br>
+          </div>
+          <div class="mainment3">
+            <span class="ment">세</span><span>상의</span>
+          </div>
+        </div>
+      </div>
+      <div class="mainlogin">      
+      <% if user_signed_in? %>
+      <!-- 혹시 몰라서 로그아웃을 만들어 놓음  -->
+        <%= button_to '로그아웃', destroy_user_session_path, method: 'delete', class: "btnmain" %>
+      <% else %>
+        <p><%= button_to '로그인', new_user_session_path, class: "btnmain" %></p>
+
+        <p><%= link_to '회원가입', new_user_registration_path, class: "btnmain_sign_in" %></p>
+        
+
+      </div>
+      <% end %>
+      <!-- Page Footer -->
+      <%= render 'footer' %>
+</div>
+
+
+
+
+<!--<script src="vendor/jquery/jquery.min.js"></script>-->
+<!--<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
+

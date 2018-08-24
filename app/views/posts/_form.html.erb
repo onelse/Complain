@@ -1,0 +1,44 @@
+<%= form_for(post) do |f| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  
+  
+  <div class="form-group">
+    <%= f.label :제목 %>
+    <%= f.text_field :title, required: true, class:"form-control title", id:"exampleFormControlTextarea1", rows:"3", maxlength: "20" %>
+  </div>
+  
+  <div class="field">
+    <%= f.text_field :hashtag, class:"form-control title", maxlength: "10", placeholder: "#" %>
+  </div>
+  
+  <!--tinymce 잼-->
+  <div class="form-group">
+    <%= tinymce %>
+    <%= f.label :내용, class: "label2" %>
+    <%= f.text_area :content, :rows => 20, class: "form-control tinymce", maxlength: "20" %>
+  </div>
+  
+  <div class="new_btn_con_con">
+    <div class="new_btn_con">
+      <div class="new_btn">
+       <%= f.submit value="작성", class:'btnlogin btnlogin-primary new' %>
+      </div>
+      <div class="new_btn">
+       <%= button_to '취소', posts_path, class: "btnlogin btnlogin-primary new" %>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+
+

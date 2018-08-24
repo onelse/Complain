@@ -1,0 +1,45 @@
+<div id="wrapper">
+  
+  <!-- Sidebar -->
+  <%= render 'side' %>
+    
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <%= render 'time' %>
+    <%= render 'sidebtn' %>
+    <div class="container">
+      <div class="row">
+          <div class="col-md-8 index">
+            <div class="topicbox align-middle">
+              <h1>"<%= @post.title %>"</h1>
+              <p><%= @post.content.html_safe %></p>
+              <p>#<%= @post.hashtag %></p>
+              
+              <%= link_to "공감", like_post_path(@post), method: :put %> <%= @post.get_upvotes.size%> |
+              <%= link_to "ㅈㄹ", dislike_post_path(@post), method: :put %> <%= @post.get_downvotes.size %>
+              <br><br>
+              <% if user_signed_in? %>
+              <% if @post.user == current_user %>
+                <%= link_to '수정', edit_post_path(@post) %> |
+                <%= link_to '삭제', @post, method: :delete, data: { confirm: '게시글을 삭제하시겠습니까?' } %> |
+              <% elsif current_user.has_role? 'admin'%>
+                <%= link_to '수정', edit_post_path(@post) %> |
+                <%= link_to '삭제', @post, method: :delete, data: { confirm: '게시글을 삭제하시겠습니까?' } %> | 
+              <% end %>
+                <%= link_to '뒤로가기', posts_path %>
+              <% else %>
+                <%= link_to '뒤로가기', posts_path %>
+              <% end %> 
+            </div>
+          </div>
+          <div class="col-md-4 index">
+              <%= render 'category' %>
+          </div>  
+        </div>
+    </div>
+    <!-- Page Footer -->
+    <%= render 'footer' %>
+  </div>
+</div>
+
+
